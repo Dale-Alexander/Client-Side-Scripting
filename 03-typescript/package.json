@@ -1,0 +1,14 @@
+{
+  "name": "product-typescript-practical",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "class-demo": "node dist/class-demo.js"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
