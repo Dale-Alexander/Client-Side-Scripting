@@ -46,3 +46,5 @@ Type and implement the inventory functions. Build and run in 03-typescript/start
 Then fix the three mistakes in errors-to-fix.ts by creating src/error-fixes.ts. Explanations and working answers are in the solution folder and lecturer guide.
 
 
+## Typescript-demo folder
+This folder contains the material covered in class regarding typescript

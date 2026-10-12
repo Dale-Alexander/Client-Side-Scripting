@@ -10,7 +10,7 @@ export function findProductById(items, id) {
 
 export function inventoryValue(items) {
   // TODO 3: Add price * stock for every product.
-  return items.reduce((accumulator, value) =>accumulator + (value.stock * value.price), 0);
+  return items.reduce((accumulator, value) => accumulator + (value.stock * value.price), 0);
 }
 
 export function productNames(items) {
