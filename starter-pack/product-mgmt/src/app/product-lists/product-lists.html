@@ -1,0 +1,40 @@
+<nav class="navbar navbar-dark bg-primary mt-2">
+    <div class="container-fluid">
+        <span class="navbar-brand">{{ getTitle() }}</span>
+        <input class="form-control w-auto" type="text" placeholder="Filter" aria-label="Filter products">
+    </div>
+</nav>
+<h4>{{getSubTitle()}}</h4>
+<h2>Products: {{products.length}}</h2>
+@if (products.length > 0) {
+
+<div class="table-responsive mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item Image</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Release Date</th>
+                <th>Star Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of products; track product.productId) {
+            <tr>
+                <td><img src="{{product.imageUrl}}" style="width: 100px; height: auto;" /></td>
+                <td>{{ product.productCode }}</td>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.releaseDate }}</td>
+                <td>{{ product.starRating }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+<p class="border p-2 mt-2">Filtering by: {{ filterText }}</p>
+<button type="button" class="btn btn-primary">Show Images</button>

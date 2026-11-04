@@ -1,5 +1,8 @@
 {
   "name": "js-ts-three-hour-pack",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
 }
