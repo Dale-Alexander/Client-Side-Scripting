@@ -1,0 +1,37 @@
+
+<nav class="navbar navbar-dark bg-primary mt-2">
+    <div class="container-fluid">
+        <span class="navbar-brand">{{ title }}</span>
+    </div>
+</nav>
+@if(articles.length > 0){
+<div class="container mt-4">
+    <!-- Lista vertikali sempliċi b'distanza (gap) bejn l-artikli -->
+    <div class="d-flex flex-column gap-3">
+        
+        @for (article of articles; track article.articleId) {
+        <!-- Kaxxa sempliċi għal kull artiklu bi sfond abjad u bordura ħafifa -->
+        <div class="p-3 bg-white border rounded shadow-sm">
+            
+            <!-- It-Titlu u l-Badge tal-Breaking News -->
+            <h5 class="mb-2 text-dark">
+                @if(article.isBreaking) {
+                    <span class="badge bg-danger text-uppercase me-2">Breaking</span>
+                }
+                {{ article.articleTitle }}
+            </h5>
+            
+            <!-- It-Test tal-Artiklu biss -->
+            <p class="mb-0 text-muted">
+                {{ article.articleText }}
+            </p>
+        </div>
+        }
+        
+    </div>
+</div>
+
+}
+@else{
+    <p>Currently, there are no articles available</p>
+}
