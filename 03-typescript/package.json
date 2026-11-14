@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/app.js",
+    "app2": "node dist/app2/app.js",
     "class-demo": "node dist/class-demo.js"
   },
   "devDependencies": {

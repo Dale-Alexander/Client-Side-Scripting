@@ -1,7 +1,7 @@
 import { bootstrapApplication }
   from '@angular/platform-browser';
-import { ProductLists }
-  from './app/product-lists/product-lists';
+import { ProductLists2 }
+  from './app/product-lists2/product-lists2';
 
-bootstrapApplication(ProductLists)
+bootstrapApplication(ProductLists2)
   .catch(error => console.error(error));

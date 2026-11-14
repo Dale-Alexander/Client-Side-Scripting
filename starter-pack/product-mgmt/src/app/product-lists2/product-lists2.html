@@ -1,0 +1,50 @@
+<nav class="navbar navbar-dark bg-primary mt-2">
+    <div class="container-fluid">
+        <span class="navbar-brand">{{ title}}</span>
+        <input class="form-control w-auto" type="text" placeholder="Filter" aria-label="Filter products">
+    </div>
+</nav>
+<h4>{{subTitle}}</h4>
+<h2>Products: {{products.length}}</h2>
+
+@if(products.length){
+<div class="table-responsive mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item Image</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Release Date</th>
+                <th>Star Rating</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(product of products; track product.id){
+            <tr>
+                <td><img src="{{product.imageUrl}}" style="width: 100px; height: auto;" /></td>
+                <td>
+                    @if(product.rating > 4){
+                    <strong>Recommended: </strong>
+                    }
+                    {{product.name}}
+                </td>
+                <td>{{product.price}}</td>
+                <td>{{product.releaseDate}}</td>
+                <td>{{product.rating}}</td>
+                <td>{{product.description}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+@else{
+<p>Currently there are no products available</p>
+}
+
+
+
+<p class="border p-2 mt-2">Filtering by: {{ filterText }}</p>
+<button type="button" class="btn btn-primary">Show Images</button>
