@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-product-lists',
+  selector: 'product-lists',
   imports: [],
   templateUrl: './product-lists.html',
   styleUrl: './product-lists.css',
@@ -9,7 +9,10 @@ import { Component } from '@angular/core';
 export class ProductLists {
   private title: string = 'Product Management system';
   private subTitle:string = 'Welcome to your Product Management System';
-
+  color:string = 'green';
+  imageWidth:number = 40;
+  imageMargin:number = 2;
+  areImagesVisible:boolean = true;
   getSubTitle():string{
     return this.subTitle;
   }
@@ -70,4 +73,8 @@ export class ProductLists {
         "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
 ]
+
+toggleImages():void{
+  this.areImagesVisible = !this.areImagesVisible;
+}
 }
