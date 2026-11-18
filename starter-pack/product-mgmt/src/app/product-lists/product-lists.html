@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-primary mt-2">
     <div class="container-fluid">
         <span class="navbar-brand">{{ getTitle() }}</span>
-        <input class="form-control w-auto" type="text" placeholder="Filter" aria-label="Filter products">
+        <input class="form-control w-auto" type="text" placeholder="Filter" aria-label="Filter products" [(ngModel)]="listFilter"/>
     </div>
 </nav>
 <h4 [innerText] = "getSubTitle()"></h4>
@@ -24,25 +24,25 @@
             </tr>
         </thead>
         <tbody>
-            @for (product of products; track product.productId) {
+            @for (product of filteredProducts; track product.productId) {
             <tr>
                 @if(areImagesVisible){
                 <td>
-                <img [src]="product.imageUrl"
-                    [title]="product.productName"
+                <img [src]="product.imageUrl "
+                    [title]="product.productName | uppercase"
                     [style.width.px]="imageWidth"
                     [style.margin.px]="imageMargin"
                     [style.height]="'auto'">
                 </td>
             }
 
-                <td>{{ product.productCode }}</td>
+                <td>{{ product.productCode | lowercase }}</td>
                 <td>
                     @if (product.starRating >= 4.5){
                         <strong>Recommended: </strong>
                     }
-                    {{ product.productName }}</td>
-                <td>{{ product.price }}</td>
+                    {{ product.productName | uppercase }}</td>
+                <td>{{ product.price | currency: 'EUR': 'symbol' : '1.2-2'}}</td>
                 <td>{{ product.releaseDate }}</td>
                 <td>{{ product.starRating }}</td>
             </tr>
@@ -55,5 +55,5 @@
 <p class = "mt-3">No Products available</p>
 }
 
-<p class="border p-2 mt-2">Filtering by: {{ filterText }}</p>
+<p class="border p-2 mt-2">Filtering by: {{listFilter}}</p>
 <button type="button" class="btn btn-primary" (click) = "toggleImages()">{{areImagesVisible ? 'Hide Images' : 'Show Images'}}</button>
