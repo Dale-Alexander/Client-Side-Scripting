@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { UpperCasePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-calculator',
@@ -19,7 +19,7 @@ export class Calculator {
   }
 
   toggleFormat():void{
-    this.isShortFormat = !this.isShortFormat;
+    this.isShortFormat = !this.isShortFormat ;
   }
 
 

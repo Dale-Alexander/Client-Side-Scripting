@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { LowerCasePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
+import { Product } from '../dto/product_dto';
+import { ConvertToSpacesPipe } from '../pipes/convert-to-spaces-pip';
 @Component({
   selector: 'product-lists',
-  imports: [FormsModule, UpperCasePipe, LowerCasePipe, CurrencyPipe],
+  imports: [FormsModule, UpperCasePipe, LowerCasePipe, CurrencyPipe, ConvertToSpacesPipe],
   templateUrl: './product-lists.html',
   styleUrl: './product-lists.css',
 })
-export class ProductLists {
+export class ProductLists implements OnInit{
   private title: string = 'Product Management system';
   private subTitle: string = 'Welcome to your Product Management System';
   color: string = 'green';
@@ -27,8 +29,8 @@ export class ProductLists {
     }
     return this.products.filter(p =>{
       const searchableText = [
-        p.productName, 
-        p.productCode, 
+        p.name, 
+        p.code, 
         p.releaseDate, 
         p.description,
         p.price,
@@ -40,60 +42,69 @@ export class ProductLists {
     return this.title;
   }
 
-  products: any[] = [
-    {
-      "productId": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2016",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-    },
-    {
-      "productId": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-0023",
-      "releaseDate": "March 18, 2016",
-      "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
-    },
-    {
-      "productId": 5,
-      "productName": "Hammer",
-      "productCode": "TBX-0048",
-      "releaseDate": "May 21, 2016",
-      "description": "Curved claw steel hammer",
-      "price": 8.9,
-      "starRating": 4.8,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-    },
-    {
-      "productId": 8,
-      "productName": "Saw",
-      "productCode": "TBX-0022",
-      "releaseDate": "May 15, 2016",
-      "description": "15-inch steel blade hand saw",
-      "price": 11.55,
-      "starRating": 3.7,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
-    },
-    {
-      "productId": 10,
-      "productName": "Video Game Controller",
-      "productCode": "GMG-0042",
-      "releaseDate": "October 15, 2015",
-      "description": "Standard two-button video game controller",
-      "price": 35.95,
-      "starRating": 4.6,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
-    }
-  ]
+  products: Product[] = [];
+initialiseProducts(){
+       this.products.push(
+          new Product(
+            1,
+            "Leaf Rake",
+            "GDN-0011",
+            "March 19, 2016",
+            "Leaf rake with 48-inch wooden handle.",
+            19.95,
+            3.2,
+            "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+          ),
+          new Product(
+            2,
+            "Garden Cart",
+            "GDN-0023",
+            "March 18, 2016",
+            "15 gallon capacity rolling garden cart",
+            32.99,
+            4.2,
+            "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+          ),
+          new Product(
+            5,
+            "Hammer",
+            "TBX-0048",
+            "May 21, 2016",
+            "Curved claw steel hammer",
+            8.9,
+            4.8,
+            "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+          ),
+          new Product(
+            8,
+            "Saw",
+            "TBX-0022",
+            "May 15, 2016",
+            "15-inch steel blade hand saw",
+            11.55,
+            3.7,
+            "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
+          ),
+          new Product(
+            10,
+            "Video Game Controller",
+            "GMG-0042",
+            "October 15, 2015",
+            "Standard two-button video game controller",
+            35.95,
+            4.6,
+            "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
+          ));
+
+
+  }
+  
 
   toggleImages(): void {
     this.areImagesVisible = !this.areImagesVisible;
+  }
+
+  ngOnInit():void{
+    this.initialiseProducts();
   }
 }
