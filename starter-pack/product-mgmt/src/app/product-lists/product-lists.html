@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark bg-primary mt-2">
+    <div class="container-fluid">
+        <span class="navbar-brand">{{ getTitle() }}</span>
+        <input class="form-control w-auto" type="text" placeholder="Filter" aria-label="Filter products" [(ngModel)]="listFilter"/>
+    </div>
+</nav>
+<h4 [innerText] = "getSubTitle()"></h4>
+<p [style.color] = "color">This is green</p>
+<h2>Products: {{products.length}}</h2>
+@if (products.length > 0) {
+
+<div class="table-responsive mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                @if(areImagesVisible){
+                <th>Item Image</th>
+                }
+                <th>Code</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Release Date</th>
+                <th>Star Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of filteredProducts; track product.productId) {
+            <tr>
+                @if(areImagesVisible){
+                <td>
+                <img [src]="product.imageUrl "
+                    [title]="product.name | uppercase"
+                    [style.width.px]="imageWidth"
+                    [style.margin.px]="imageMargin"
+                    [style.height]="'auto'">
+                </td>
+            }
+
+                <td>{{ product.code | lowercase | convertToSpaces:'-' }}</td>
+                <td>
+                    @if (product.starRating >= 4.5){
+                        <strong>Recommended: </strong>
+                    }
+                    {{ product.name | uppercase }}</td>
+                <td>{{ product.price | currency: 'EUR': 'symbol' : '1.2-2'}}</td>
+                <td>{{ product.releaseDate }}</td>
+                <td>{{ product.starRating }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+@else{
+<p class = "mt-3">No Products available</p>
+}
+
+<p class="border p-2 mt-2">Filtering by: {{listFilter}}</p>
+<button type="button" class="btn btn-primary" (click) = "toggleImages()">{{areImagesVisible ? 'Hide Images' : 'Show Images'}}</button>

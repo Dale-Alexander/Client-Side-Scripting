@@ -1,0 +1,13 @@
+<!-- <p>{{birthday | date:'MMM d, y'}}</p> Dec 13, 2026
+<p>{{birthday | date:'dd/MM/yyyy'}}</p>13/12/2026 -->
+<p>Date : {{birthday | date:(isShortFormat ? 'dd/MM/yyyy' : 'MMM d, y')}}</p>
+<div>Date : {{birthday | date:(isShortFormat ? 'shortDate' : 'fullDate')}}</div>
+<div>Date : {{birthday | date:('fullDate' | uppercase)}}</div>
+
+
+<button type="button" class = "btn btn-primary" (click)="toggleFormat()">
+Toggle Date Format</button>"
+
+<input type="number" [(ngModel)]="firstValue" (ngModelChange)="calculate()"/>
+<input type="number" [(ngModel)]="secondValue" (ngModelChange)="calculate()"/>
+<p>Result : {{result}}</p>
