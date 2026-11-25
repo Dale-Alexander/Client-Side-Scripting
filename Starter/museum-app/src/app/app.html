@@ -1,0 +1,88 @@
+<app-gallery-banner></app-gallery-banner>
+<table>
+    <thead>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Title
+            </td>
+            <td>
+                Gallery
+            </td>
+            <td>
+                Minutes
+            </td>
+            <td>
+                Featured
+            </td>
+            <td>
+                Actions
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @for(exhibit of exhibits; track exhibit.id){
+        <tr>
+            <td>
+                {{exhibit.id}}
+            </td>
+            <td>
+                <img [src] = "exhibit.isVisited ? 'assets/img/visited.png' : 'assets/img/not-visited.png'"
+                [alt]="exhibit.isVisited ? 'Exhibit has been visited' : 'Exhibit has not been visited'"
+                width="20" height="20"/>
+                {{exhibit.title}}
+            </td>
+            <td>
+                {{exhibit.gallery}}
+            </td>
+            <td>
+                {{exhibit.viewingMinutes}}
+            </td>
+            <td>
+                {{exhibit.isFeatured ? 'Yes' : 'No'}}
+            </td>
+                        <td>
+                <button 
+                (click)="toggleVisit(exhibit)"
+                >{{exhibit.isVisited ? 'Mark as not visited' : 'Mark as visited'}}
+            </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <div>
+        <div>
+            <span>Visited</span>
+            <h3>{{visitedCount()}}</h3>
+        </div>
+    </div>
+        <div>
+        <div>
+            <span>Remaining</span>
+            <h3>{{remainingExhibits()}}</h3>
+        </div>
+    </div>
+        <div>
+        <div>
+            <span>Features Visited</span>
+            <h3>{{(featuredAndVisited())}}</h3>
+        </div>
+    </div>
+        <div>
+        <div>
+            <span>Total Viewing Minutes</span>
+            <h3>{{(totalViewedMinutes())}}</h3>
+        </div>
+    </div>
+        <div>
+        <div>
+            <span>Progress Message</span>
+            <h3>{{message()}}</h3>
+        </div>
+    </div>
+</div>

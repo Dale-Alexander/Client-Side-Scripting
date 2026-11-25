@@ -1,0 +1,5 @@
+The compiler reports this error because ngModel is part of angular's FormsModule and standalone 
+components requre you to explicitly import any directives or modules they use inside their 
+@Component decorator's imports array.
+
+To fix this, import FormModule from @angular/forms and add it to your component's imports
